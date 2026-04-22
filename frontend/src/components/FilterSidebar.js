@@ -18,8 +18,8 @@ const FilterSidebar = ({ onFilterChange, currentFilters }) => {
       try {
         const { data: categoriesData } = await axios.get('/api/products/categories')
         const { data: brandsData } = await axios.get('/api/products/brands')
-        setCategories(categoriesData)
-        setBrands(brandsData)
+        setCategories(Array.isArray(categoriesData) ? categoriesData : [])
+        setBrands(Array.isArray(brandsData) ? brandsData : [])
       } catch (error) {
         console.error('Error fetching filters:', error)
       }
