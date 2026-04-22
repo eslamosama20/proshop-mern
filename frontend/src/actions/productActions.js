@@ -241,7 +241,7 @@ export const listTopProducts = () => async (dispatch) => {
 
     dispatch({
       type: PRODUCT_TOP_SUCCESS,
-      payload: data,
+      payload: Array.isArray(data) ? data : [],
     })
   } catch (error) {
     dispatch({
