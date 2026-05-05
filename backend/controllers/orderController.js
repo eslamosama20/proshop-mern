@@ -1,5 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import Product from '../models/productModel.js'
+import User from '../models/userModel.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -114,6 +116,40 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
+// @desc    Get dashboard statistics
+// @route   GET /api/orders/stats
+// @access  Private/Admin
+const getDashboardStats = asyncHandler(async (req, res) => {
+  const totalOrders = await Order.countDocuments({})
+  const paidOrders = await Order.countDocuments({ isPaid: true })
+  const deliveredOrders = await Order.countDocuments({ isDelivered: true })
+
+  const revenueResult = await Order.aggregate([
+    { $match: { isPaid: true } },
+    { $group: { _id: null, total: { $sum: '$totalPrice' } } },
+  ])
+  const totalRevenue = revenueResult.length > 0 ? revenueResult[0].total : 0
+
+  const totalProducts = await Product.countDocuments({})
+  const totalUsers = await User.countDocuments({})
+
+  const recentOrders = await Order.find({})
+    .sort({ createdAt: -1 })
+    .limit(5)
+    .populate('user', 'name')
+    .select('_id createdAt totalPrice isPaid isDelivered user')
+
+  res.json({
+    totalOrders,
+    paidOrders,
+    deliveredOrders,
+    totalRevenue,
+    totalProducts,
+    totalUsers,
+    recentOrders,
+  })
+})
+
 export {
   addOrderItems,
   getOrderById,
@@ -121,4 +157,5 @@ export {
   updateOrderToDelivered,
   getMyOrders,
   getOrders,
+  getDashboardStats,
 }

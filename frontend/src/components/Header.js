@@ -99,6 +99,13 @@ const Header = () => {
                   } 
                   id='adminmenu'
                 >
+                  <LinkContainer to='/admin/dashboard'>
+                    <NavDropdown.Item>
+                      <i className='fas fa-tachometer-alt' style={{ marginRight: '0.5rem' }}></i>
+                      Dashboard
+                    </NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Divider />
                   <LinkContainer to='/admin/userlist'>
                     <NavDropdown.Item>
                       <i className='fas fa-users' style={{ marginRight: '0.5rem' }}></i>

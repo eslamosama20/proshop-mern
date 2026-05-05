@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import PrivateRoute from './components/PrivateRoute'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
@@ -20,6 +21,7 @@ import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import WishlistScreen from './screens/WishlistScreen'
 import CompareScreen from './screens/CompareScreen'
+import AdminDashboardScreen from './screens/AdminDashboardScreen'
 
 const App = () => {
   return (
@@ -27,39 +29,40 @@ const App = () => {
       <Header />
       <main className='py-3'>
         <Container>
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/wishlist' component={WishlistScreen} />
-          <Route path='/compare' component={CompareScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
-          <Route
+          <PrivateRoute path='/order/:id' component={OrderScreen} />
+          <PrivateRoute path='/shipping' component={ShippingScreen} />
+          <PrivateRoute path='/payment' component={PaymentScreen} />
+          <PrivateRoute path='/placeorder' component={PlaceOrderScreen} />
+          <PrivateRoute path='/profile' component={ProfileScreen} />
+          <PrivateRoute path='/wishlist' component={WishlistScreen} />
+          <PrivateRoute path='/compare' component={CompareScreen} />
+          <PrivateRoute path='/product/:id' component={ProductScreen} />
+          <PrivateRoute path='/cart/:id?' component={CartScreen} />
+          <PrivateRoute path='/admin/dashboard' component={AdminDashboardScreen} />
+          <PrivateRoute path='/admin/userlist' component={UserListScreen} />
+          <PrivateRoute path='/admin/user/:id/edit' component={UserEditScreen} />
+          <PrivateRoute
             path='/admin/productlist'
             component={ProductListScreen}
             exact
           />
-          <Route
+          <PrivateRoute
             path='/admin/productlist/:pageNumber'
             component={ProductListScreen}
             exact
           />
-          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
-          <Route path='/admin/orderlist' component={OrderListScreen} />
-          <Route path='/search/:keyword' component={HomeScreen} exact />
-          <Route path='/page/:pageNumber' component={HomeScreen} exact />
-          <Route
+          <PrivateRoute path='/admin/product/:id/edit' component={ProductEditScreen} />
+          <PrivateRoute path='/admin/orderlist' component={OrderListScreen} />
+          <PrivateRoute path='/search/:keyword' component={HomeScreen} exact />
+          <PrivateRoute path='/page/:pageNumber' component={HomeScreen} exact />
+          <PrivateRoute
             path='/search/:keyword/page/:pageNumber'
             component={HomeScreen}
             exact
           />
-          <Route path='/' component={HomeScreen} exact />
+          <PrivateRoute path='/' component={HomeScreen} exact />
         </Container>
       </main>
       <Footer />
