@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
@@ -24,6 +25,13 @@ const LoginScreen = ({ location, history }) => {
     }
   }, [history, userInfo, redirect])
 
+  // Redirect to verify screen if email not verified
+  useEffect(() => {
+    if (error === 'EMAIL_NOT_VERIFIED') {
+      history.push(`/verifyemail?email=${encodeURIComponent(email)}&redirect=${redirect}`)
+    }
+  }, [error, email, history, redirect])
+
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(login(email, password))
@@ -32,7 +40,9 @@ const LoginScreen = ({ location, history }) => {
   return (
     <FormContainer>
       <h1>Sign In</h1>
-      {error && <Message variant='danger'>{error}</Message>}
+      {error && error !== 'EMAIL_NOT_VERIFIED' && (
+        <Message variant='danger'>{error}</Message>
+      )}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
@@ -58,6 +68,12 @@ const LoginScreen = ({ location, history }) => {
         <Button type='submit' variant='primary'>
           Sign In
         </Button>
+
+        <div className='text-right mt-2'>
+          <Link to='/forgotpassword' style={{ fontSize: '0.9rem', color: '#764ba2' }}>
+            Forgot Password?
+          </Link>
+        </div>
       </Form>
 
       <Row className='py-3'>

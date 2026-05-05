@@ -22,8 +22,9 @@ const RegisterScreen = ({ location, history }) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if (userInfo) {
-      history.push(redirect)
+    // After registration, userInfo contains { needsVerification, email }
+    if (userInfo && userInfo.needsVerification) {
+      history.push(`/verifyemail?email=${encodeURIComponent(userInfo.email)}&redirect=${redirect}`)
     }
   }, [history, userInfo, redirect])
 

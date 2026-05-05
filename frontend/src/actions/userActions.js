@@ -96,13 +96,7 @@ export const register = (name, email, password) => async (dispatch) => {
       type: USER_REGISTER_SUCCESS,
       payload: data,
     })
-
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    })
-
-    localStorage.setItem('userInfo', JSON.stringify(data))
+    // Do NOT auto-login — user must verify email first
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
