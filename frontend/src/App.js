@@ -24,6 +24,7 @@ import CompareScreen from './screens/CompareScreen'
 import AdminDashboardScreen from './screens/AdminDashboardScreen'
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen'
 import VerifyEmailScreen from './screens/VerifyEmailScreen'
+import AboutScreen from './screens/AboutScreen'
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/forgotpassword' component={ForgotPasswordScreen} />
           <Route path='/verifyemail' component={VerifyEmailScreen} />
+          <Route path='/about' component={AboutScreen} />
           <PrivateRoute path='/order/:id' component={OrderScreen} />
           <PrivateRoute path='/shipping' component={ShippingScreen} />
           <PrivateRoute path='/payment' component={PaymentScreen} />
