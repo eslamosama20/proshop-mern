@@ -131,8 +131,8 @@ const AboutScreen = () => {
         <Row className='justify-content-center'>
           <Col md={3} className='mb-2'>
             <i className='fas fa-envelope text-primary' style={{ marginRight: '0.4rem' }}></i>
-            <a href='mailto:osamaeslam087@gmail.com' className='text-muted'>
-              osamaeslam087@gmail.com
+            <a href='mailto:proshop232001@gmail.com' className='text-muted'>
+              proshop232001@gmail.com
             </a>
           </Col>
           <Col md={3} className='mb-2'>

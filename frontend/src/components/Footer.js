@@ -93,8 +93,8 @@ const Footer = () => {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               <li style={{ marginBottom: '0.7rem', fontSize: '0.9rem', color: '#aaa' }}>
                 <i className='fas fa-envelope' style={{ marginRight: '0.5rem', color: '#6366f1' }}></i>
-                <a href='mailto:osamaeslam087@gmail.com' style={{ color: '#aaa', textDecoration: 'none' }}>
-                  osamaeslam087@gmail.com
+                <a href='mailto:proshop232001@gmail.com' style={{ color: '#aaa', textDecoration: 'none' }}>
+                  proshop232001@gmail.com
                 </a>
               </li>
               <li style={{ marginBottom: '0.7rem', fontSize: '0.9rem', color: '#aaa' }}>
